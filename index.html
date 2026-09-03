@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiny House Project</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f1ea;
+            color: #252525;
+        }
+
+        header {
+            background: #2f4f3a;
+            color: white;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 24px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .hero {
+            min-height: 75vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #dfe8d9, #f4f1ea);
+        }
+
+        .hero h2 {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            background: #2f4f3a;
+            color: white;
+            padding: 14px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        section {
+            padding: 70px 8%;
+        }
+
+        section h2 {
+            text-align: center;
+            font-size: 35px;
+            margin-bottom: 40px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+            font-size: 22px;
+        }
+
+        .number {
+            font-size: 35px;
+            font-weight: bold;
+            color: #2f4f3a;
+            margin-bottom: 8px;
+        }
+
+        footer {
+            background: #2f4f3a;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        @media (max-width: 700px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h2 {
+                font-size: 42px;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>🏠 Tiny House</h1>
+
+        <nav>
+            <a href="#design">Design</a>
+            <a href="#maths">Maths</a>
+            <a href="#features">Features</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h2>My Tiny House</h2>
+
+        <p>
+            A creative tiny-house design combining smart spaces,
+            mathematics and sustainable ideas.
+        </p>
+
+        <a href="#design" class="button">Explore the Design</a>
+    </div>
+
+    <section id="design">
+        <h2>🏠 The Design</h2>
+
+        <div class="cards">
+            <div class="card">
+                <div class="number">8 m</div>
+                <h3>Length</h3>
+                <p>Example house length.</p>
+            </div>
+
+            <div class="card">
+                <div class="number">4 m</div>
+                <h3>Width</h3>
+                <p>Example house width.</p>
+            </div>
+
+            <div class="card">
+                <div class="number">32 m²</div>
+                <h3>Floor Area</h3>
+                <p>Example total floor area.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="maths">
+        <h2>🧮 The Maths</h2>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Area</h3>
+                <p>Length × Width</p>
+                <br>
+                <strong>8 × 4 = 32 m²</strong>
+            </div>
+
+            <div class="card">
+                <h3>Perimeter</h3>
+                <p>2 × (Length + Width)</p>
+                <br>
+                <strong>2 × (8 + 4) = 24 m</strong>
+            </div>
+
+            <div class="card">
+                <h3>Scale</h3>
+                <p>Example scale</p>
+                <br>
+                <strong>1 : 50</strong>
+            </div>
+        </div>
+    </section>
+
+    <section id="features">
+        <h2>🌱 Features</h2>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Smart Space</h3>
+                <p>Designed to make the most of every part of the house.</p>
+            </div>
+
+            <div class="card">
+                <h3>Sustainable</h3>
+                <p>Includes ideas for reducing energy and resource use.</p>
+            </div>
+
+            <div class="card">
+                <h3>Modern Design</h3>
+                <p>A simple and comfortable design for tiny-house living.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>My Tiny House Project • Maths</p>
+    </footer>
+
+</body>
+</html>
