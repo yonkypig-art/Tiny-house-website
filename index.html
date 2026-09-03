@@ -3,126 +3,618 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tiny House Project</title>
+
+    <title>Oak & Pine | Tiny House Project</title>
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap');
+
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f1ea;
-            color: #252525;
+            font-family: "DM Sans", sans-serif;
+            color: #222;
+            background: #f8f7f3;
+            line-height: 1.6;
         }
 
-        header {
-            background: #2f4f3a;
-            color: white;
-            padding: 20px 8%;
+        /* NAVBAR */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 78px;
+            padding: 0 7%;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            background: rgba(255,255,255,0.94);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid #e8e6df;
         }
 
-        header h1 {
-            font-size: 24px;
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 25px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
         }
 
-        nav a {
-            color: white;
+        .logo span {
+            font-family: "DM Sans", sans-serif;
+            font-size: 11px;
+            display: block;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #777;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #333;
             text-decoration: none;
-            margin-left: 20px;
+            font-size: 14px;
+            transition: 0.3s;
         }
+
+        .nav-links a:hover {
+            color: #777;
+        }
+
+        .nav-button {
+            background: #252b27;
+            color: white !important;
+            padding: 11px 19px;
+            border-radius: 3px;
+        }
+
+        /* HERO */
 
         .hero {
-            min-height: 75vh;
+            min-height: 92vh;
+            padding: 150px 7% 70px;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+            background:
+                linear-gradient(90deg, rgba(248,247,243,0.98) 0%, rgba(248,247,243,0.88) 45%, rgba(248,247,243,0.25) 100%);
+        }
+
+        .hero-content {
+            max-width: 680px;
+            animation: fadeUp 1s ease;
+        }
+
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 18px;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(55px, 8vw, 100px);
+            line-height: 0.98;
+            font-weight: 500;
+            margin-bottom: 28px;
+            letter-spacing: -3px;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: #687766;
+        }
+
+        .hero-text {
+            max-width: 530px;
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .primary-button,
+        .secondary-button {
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 3px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .primary-button {
+            background: #252b27;
+            color: white;
+        }
+
+        .primary-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .secondary-button {
+            border: 1px solid #aaa;
+            color: #333;
+        }
+
+        .secondary-button:hover {
+            background: white;
+        }
+
+        /* HERO HOUSE */
+
+        .house-illustration {
+            position: absolute;
+            right: 4%;
+            bottom: 7%;
+            width: 43%;
+            max-width: 620px;
+            height: 390px;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .house {
+            position: absolute;
+            bottom: 45px;
+            left: 8%;
+            width: 82%;
+            height: 210px;
+            background: #ded8cb;
+            border: 3px solid #333;
+            box-shadow: 15px 15px 0 rgba(0,0,0,0.08);
+        }
+
+        .roof {
+            position: absolute;
+            top: -125px;
+            left: -25px;
+            width: 0;
+            height: 0;
+            border-left: 300px solid transparent;
+            border-right: 300px solid transparent;
+            border-bottom: 130px solid #343a35;
+        }
+
+        .window {
+            position: absolute;
+            width: 105px;
+            height: 90px;
+            background: #b8d0d2;
+            border: 7px solid #333;
+            top: 48px;
+        }
+
+        .window.one {
+            left: 45px;
+        }
+
+        .window.two {
+            right: 45px;
+        }
+
+        .door {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 72px;
+            height: 145px;
+            background: #697060;
+            border: 5px solid #333;
+        }
+
+        .door::after {
+            content: "";
+            position: absolute;
+            right: 10px;
+            top: 72px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #eee;
+        }
+
+        .ground {
+            position: absolute;
+            bottom: 25px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #333;
+        }
+
+        /* STATS */
+
+        .stats {
+            background: #252b27;
+            color: white;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding: 30px 7%;
+        }
+
+        .stat {
             text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #dfe8d9, #f4f1ea);
+            padding: 20px;
+            border-right: 1px solid rgba(255,255,255,0.15);
         }
 
-        .hero h2 {
-            font-size: 60px;
-            margin-bottom: 15px;
+        .stat:last-child {
+            border: none;
         }
 
-        .hero p {
-            font-size: 20px;
-            max-width: 600px;
+        .stat-number {
+            font-family: "Playfair Display", serif;
+            font-size: 35px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.65;
+        }
+
+        /* GENERAL SECTIONS */
+
+        section {
+            padding: 110px 7%;
+        }
+
+        .section-heading {
+            max-width: 700px;
+            margin-bottom: 55px;
+        }
+
+        .section-heading h2 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(40px, 5vw, 65px);
+            font-weight: 500;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .section-heading p {
+            color: #777;
+            font-size: 17px;
+        }
+
+        /* DESIGN */
+
+        .design-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .floor-plan {
+            background: white;
+            padding: 35px;
+            border: 1px solid #e4e1d9;
+        }
+
+        .floor-plan-inner {
+            height: 370px;
+            border: 3px solid #333;
+            position: relative;
+            background: #eeeae1;
+        }
+
+        .room {
+            position: absolute;
+            border: 2px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 13px;
+            background: #f8f7f3;
+        }
+
+        .living {
+            width: 55%;
+            height: 58%;
+            top: 0;
+            left: 0;
+        }
+
+        .kitchen {
+            width: 45%;
+            height: 58%;
+            top: 0;
+            right: 0;
+        }
+
+        .bedroom {
+            width: 55%;
+            height: 42%;
+            bottom: 0;
+            left: 0;
+        }
+
+        .bathroom {
+            width: 45%;
+            height: 42%;
+            bottom: 0;
+            right: 0;
+        }
+
+        .plan-label {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+            font-size: 13px;
+        }
+
+        .design-info h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 36px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .design-info p {
+            color: #666;
             margin-bottom: 30px;
         }
 
-        .button {
-            background: #2f4f3a;
-            color: white;
-            padding: 14px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            display: inline-block;
+        .feature-list {
+            list-style: none;
         }
 
-        section {
-            padding: 70px 8%;
+        .feature-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
         }
 
-        section h2 {
-            text-align: center;
-            font-size: 35px;
-            margin-bottom: 40px;
+        .feature-list span {
+            color: #888;
         }
 
-        .cards {
+        /* MATHS */
+
+        .math-section {
+            background: #ebe9e1;
+        }
+
+        .math-cards {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 25px;
         }
 
-        .card {
+        .math-card {
             background: white;
-            padding: 30px;
-            border-radius: 18px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            padding: 35px;
+            border: 1px solid #dedbd1;
+            transition: 0.3s;
         }
 
-        .card h3 {
+        .math-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .math-card .symbol {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .math-card h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 28px;
             margin-bottom: 12px;
-            font-size: 22px;
         }
 
-        .number {
-            font-size: 35px;
-            font-weight: bold;
-            color: #2f4f3a;
-            margin-bottom: 8px;
+        .equation {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f1f0eb;
+            font-weight: 600;
+            font-size: 15px;
         }
+
+        /* FEATURES */
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .feature-box {
+            padding: 35px;
+            background: white;
+            border: 1px solid #e4e1d9;
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .feature-box h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 27px;
+            margin-bottom: 10px;
+        }
+
+        .feature-box p {
+            color: #777;
+        }
+
+        /* BUDGET */
+
+        .budget {
+            background: #252b27;
+            color: white;
+        }
+
+        .budget .section-heading p {
+            color: #b9bcb9;
+        }
+
+        .budget-box {
+            max-width: 800px;
+            background: #303731;
+            padding: 40px;
+        }
+
+        .budget-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .budget-row:last-child {
+            border: none;
+        }
+
+        .total {
+            font-size: 27px;
+            font-family: "Playfair Display", serif;
+            margin-top: 20px;
+        }
+
+        /* FOOTER */
 
         footer {
-            background: #2f4f3a;
+            padding: 45px 7%;
+            background: #181c19;
             color: white;
-            text-align: center;
-            padding: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        @media (max-width: 700px) {
-            .cards {
+        footer p {
+            color: #999;
+            font-size: 13px;
+        }
+
+        /* ANIMATIONS */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                min-height: 100vh;
+                padding-top: 120px;
+            }
+
+            .house-illustration {
+                opacity: 0.18;
+                width: 90%;
+                right: -15%;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat:nth-child(2) {
+                border-right: none;
+            }
+
+            .design-grid {
                 grid-template-columns: 1fr;
             }
 
-            .hero h2 {
-                font-size: 42px;
+            .math-cards,
+            .feature-grid {
+                grid-template-columns: 1fr;
             }
 
-            header {
+            footer {
                 flex-direction: column;
                 gap: 10px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 500px) {
+
+            section {
+                padding: 75px 6%;
+            }
+
+            .hero {
+                padding-left: 6%;
+                padding-right: 6%;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .stats {
+                padding: 20px 4%;
+            }
+
+            .stat {
+                padding: 15px 5px;
+            }
+
+            .stat-number {
+                font-size: 27px;
+            }
+
+            .floor-plan {
+                padding: 15px;
             }
         }
     </style>
@@ -130,101 +622,427 @@
 
 <body>
 
-    <header>
-        <h1>🏠 Tiny House</h1>
+    <!-- NAVIGATION -->
 
-        <nav>
-            <a href="#design">Design</a>
-            <a href="#maths">Maths</a>
-            <a href="#features">Features</a>
-        </nav>
-    </header>
+    <nav>
+        <div class="logo">
+            Oak & Pine
+            <span>Tiny House Project</span>
+        </div>
 
-    <div class="hero">
-        <h2>My Tiny House</h2>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#design">Design</a></li>
+            <li><a href="#maths">Maths</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#budget" class="nav-button">Budget</a></li>
+        </ul>
+    </nav>
 
-        <p>
-            A creative tiny-house design combining smart spaces,
-            mathematics and sustainable ideas.
-        </p>
 
-        <a href="#design" class="button">Explore the Design</a>
+    <!-- HERO -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+                A Year 7 Mathematics Project
+            </div>
+
+            <h1>
+                Small space.<br>
+                <em>Big ideas.</em>
+            </h1>
+
+            <p class="hero-text">
+                Welcome to a modern tiny-house concept designed
+                around clever mathematics, efficient spaces and
+                comfortable living.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#design" class="primary-button">
+                    Explore the House
+                </a>
+
+                <a href="#maths" class="secondary-button">
+                    View the Maths
+                </a>
+            </div>
+
+        </div>
+
+
+        <!-- SIMPLE HOUSE ILLUSTRATION -->
+
+        <div class="house-illustration">
+
+            <div class="house">
+
+                <div class="roof"></div>
+
+                <div class="window one"></div>
+
+                <div class="window two"></div>
+
+                <div class="door"></div>
+
+            </div>
+
+            <div class="ground"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUICK STATS -->
+
+    <div class="stats">
+
+        <div class="stat">
+            <div class="stat-number">8 m</div>
+            <div class="stat-label">Length</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number">4 m</div>
+            <div class="stat-label">Width</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number">32 m²</div>
+            <div class="stat-label">Floor Area</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-number">1:50</div>
+            <div class="stat-label">Scale</div>
+        </div>
+
     </div>
 
+
+    <!-- DESIGN -->
+
     <section id="design">
-        <h2>🏠 The Design</h2>
 
-        <div class="cards">
-            <div class="card">
-                <div class="number">8 m</div>
-                <h3>Length</h3>
-                <p>Example house length.</p>
-            </div>
+        <div class="section-heading">
+            <div class="eyebrow">The Concept</div>
 
-            <div class="card">
-                <div class="number">4 m</div>
-                <h3>Width</h3>
-                <p>Example house width.</p>
-            </div>
+            <h2>
+                Designed for<br>
+                smart living.
+            </h2>
 
-            <div class="card">
-                <div class="number">32 m²</div>
-                <h3>Floor Area</h3>
-                <p>Example total floor area.</p>
-            </div>
+            <p>
+                Every part of the house has been planned to make
+                efficient use of a limited amount of space.
+            </p>
         </div>
+
+
+        <div class="design-grid">
+
+            <!-- FLOOR PLAN -->
+
+            <div class="floor-plan">
+
+                <div class="floor-plan-inner">
+
+                    <div class="room living">
+                        Living Area
+                    </div>
+
+                    <div class="room kitchen">
+                        Kitchen
+                    </div>
+
+                    <div class="room bedroom">
+                        Bedroom
+                    </div>
+
+                    <div class="room bathroom">
+                        Bathroom
+                    </div>
+
+                </div>
+
+                <div class="plan-label">
+                    Example floor plan — measurements will be
+                    replaced with the final design.
+                </div>
+
+            </div>
+
+
+            <!-- INFORMATION -->
+
+            <div class="design-info">
+
+                <h3>
+                    A home that makes every metre count.
+                </h3>
+
+                <p>
+                    The layout uses separate zones for living,
+                    cooking, sleeping and bathing while keeping
+                    the overall footprint compact.
+                </p>
+
+                <ul class="feature-list">
+
+                    <li>
+                        Floor area
+                        <span>32 m²</span>
+                    </li>
+
+                    <li>
+                        Length
+                        <span>8 m</span>
+                    </li>
+
+                    <li>
+                        Width
+                        <span>4 m</span>
+                    </li>
+
+                    <li>
+                        Example scale
+                        <span>1 : 50</span>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
     </section>
 
-    <section id="maths">
-        <h2>🧮 The Maths</h2>
 
-        <div class="cards">
-            <div class="card">
+    <!-- MATHS -->
+
+    <section class="math-section" id="maths">
+
+        <div class="section-heading">
+
+            <div class="eyebrow">Mathematics</div>
+
+            <h2>
+                The numbers<br>
+                behind the design.
+            </h2>
+
+            <p>
+                Mathematics helps turn the idea into a realistic
+                and measurable house.
+            </p>
+
+        </div>
+
+
+        <div class="math-cards">
+
+            <div class="math-card">
+
+                <div class="symbol">▣</div>
+
                 <h3>Area</h3>
-                <p>Length × Width</p>
-                <br>
-                <strong>8 × 4 = 32 m²</strong>
+
+                <p>
+                    To calculate the floor area, multiply the
+                    length by the width.
+                </p>
+
+                <div class="equation">
+                    8 × 4 = 32 m²
+                </div>
+
             </div>
 
-            <div class="card">
+
+            <div class="math-card">
+
+                <div class="symbol">□</div>
+
                 <h3>Perimeter</h3>
-                <p>2 × (Length + Width)</p>
-                <br>
-                <strong>2 × (8 + 4) = 24 m</strong>
+
+                <p>
+                    The perimeter is the total distance around
+                    the outside of the house.
+                </p>
+
+                <div class="equation">
+                    2 × (8 + 4) = 24 m
+                </div>
+
             </div>
 
-            <div class="card">
+
+            <div class="math-card">
+
+                <div class="symbol">↔</div>
+
                 <h3>Scale</h3>
-                <p>Example scale</p>
-                <br>
-                <strong>1 : 50</strong>
+
+                <p>
+                    A scale drawing allows the real house to be
+                    represented accurately on paper.
+                </p>
+
+                <div class="equation">
+                    Example scale: 1 : 50
+                </div>
+
             </div>
+
         </div>
+
     </section>
+
+
+    <!-- FEATURES -->
 
     <section id="features">
-        <h2>🌱 Features</h2>
 
-        <div class="cards">
-            <div class="card">
-                <h3>Smart Space</h3>
-                <p>Designed to make the most of every part of the house.</p>
-            </div>
+        <div class="section-heading">
 
-            <div class="card">
-                <h3>Sustainable</h3>
-                <p>Includes ideas for reducing energy and resource use.</p>
-            </div>
+            <div class="eyebrow">House Features</div>
 
-            <div class="card">
-                <h3>Modern Design</h3>
-                <p>A simple and comfortable design for tiny-house living.</p>
-            </div>
+            <h2>
+                Simple ideas.<br>
+                Better living.
+            </h2>
+
+            <p>
+                The design focuses on making the small space
+                practical, comfortable and efficient.
+            </p>
+
         </div>
+
+
+        <div class="feature-grid">
+
+            <div class="feature-box">
+
+                <div class="feature-icon">🌱</div>
+
+                <h3>Sustainable</h3>
+
+                <p>
+                    The design can include energy-efficient
+                    lighting, natural ventilation and sustainable
+                    materials.
+                </p>
+
+            </div>
+
+
+            <div class="feature-box">
+
+                <div class="feature-icon">📐</div>
+
+                <h3>Efficient</h3>
+
+                <p>
+                    Careful measurements help make sure that
+                    every section of the house has a purpose.
+                </p>
+
+            </div>
+
+
+            <div class="feature-box">
+
+                <div class="feature-icon">🏠</div>
+
+                <h3>Comfortable</h3>
+
+                <p>
+                    The layout balances useful living space with
+                    the compact size of a tiny house.
+                </p>
+
+            </div>
+
+        </div>
+
     </section>
 
+
+    <!-- BUDGET -->
+
+    <section class="budget" id="budget">
+
+        <div class="section-heading">
+
+            <div class="eyebrow">Example Budget</div>
+
+            <h2>
+                What could it cost?
+            </h2>
+
+            <p>
+                These are placeholder figures for the draft
+                website. They can be replaced with the real
+                project calculations later.
+            </p>
+
+        </div>
+
+
+        <div class="budget-box">
+
+            <div class="budget-row">
+                <span>Building materials</span>
+                <strong>$12,000</strong>
+            </div>
+
+            <div class="budget-row">
+                <span>Kitchen</span>
+                <strong>$4,000</strong>
+            </div>
+
+            <div class="budget-row">
+                <span>Bathroom</span>
+                <strong>$3,500</strong>
+            </div>
+
+            <div class="budget-row">
+                <span>Furniture</span>
+                <strong>$2,500</strong>
+            </div>
+
+            <div class="budget-row">
+                <span>Other costs</span>
+                <strong>$1,000</strong>
+            </div>
+
+            <div class="total">
+                Example total: $23,000
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
     <footer>
-        <p>My Tiny House Project • Maths</p>
+
+        <div class="logo">
+            Oak & Pine
+            <span>Tiny House Project</span>
+        </div>
+
+        <p>
+            Mathematics • Design • Creativity
+        </p>
+
     </footer>
 
 </body>
